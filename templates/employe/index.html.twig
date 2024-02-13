@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des employés{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des employés</h1>
+
+    <a href="{{ path('new_employe')}}" class="btn btn-success">Ajouter une employe</a><br>
+
+    {% for employe in employes %}
+
+        <a href="{{ path('show_employe', {'id':employe.id})}}">{{ employe }}</a> ({{ employe.entreprise.raisonSociale }})
+        <a class="btn btn-warning" href="{{ path('edit_employe', {'id': employe.id}) }}">Edit</a>
+        <a class="btn btn-danger" href="{{ path('delete_employe', {'id': employe.id}) }}">Supprimer</a>
+        <br>
+        {# employe.entreprise.raisonSociale | Chainage :  objet employe objet entreprise rataché et accède à la raison de l'entreprise de l'employé #}
+    {% endfor %}
+
+{% endblock %}
